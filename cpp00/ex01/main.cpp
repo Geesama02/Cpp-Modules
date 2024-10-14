@@ -4,13 +4,41 @@
 int main()
 {
 	std::string cmd;
+	int index;
+	int indexToView;
 	PhoneBook my_phonebook;
+	index = 0;
 	while (cmd != "EXIT")
 	{
 		std::cout << "Enter Command (ADD, SEARCH, EXIT): ";
 		std::cin >> cmd;
-		// if (cmd == "SEARCH")
-
+		if (cmd == "ADD")
+		{
+			my_phonebook.contacts[index].add();
+			index++;
+			if (index == 8)
+				index = 0;
+		}
+		else if (cmd == "SEARCH")
+		{
+			indexToView = 0;
+			my_phonebook.search();
+			while (indexToView > 8 || indexToView < 1)
+			{
+				std::cout << "Enter Contact Index To View: ";
+				std::cin >> indexToView;
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(10000, '\n');
+					indexToView = 0;
+				}
+				if (indexToView <= 8 && indexToView >= 1)
+				{
+					my_phonebook.contacts[indexToView - 1].display();
+				}
+			}
+		}
 	}
 	return (0);
 }
