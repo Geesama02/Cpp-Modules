@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/16 15:48:00 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/16 14:39:49 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/16 15:34:12 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "Zombie.hpp"
 
-#include "Contact.hpp"
-
-class PhoneBook {
-	public:
-		Contact contacts[8];
-		void search();
-};
-
-#endif
+std::string Zombie::getName()
+{
+	return (name);
+}
+void Zombie::setName(std::string newName)
+{
+	name = newName;
+}
+void Zombie::announce()
+{
+	std::cout << getName() << ": BraiiiiiiinnnzzzZ...\n";
+}
+Zombie::Zombie( std::string name )
+{
+	setName(name);
+}
+Zombie::~Zombie()
+{
+	std::cout << getName() << ": Byyyyye BraiiiiiiinnnzzzZ...\n";
+}
