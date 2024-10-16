@@ -11,24 +11,35 @@ void Contact::setNickname(std::string str) { nickname = str; }
 void Contact::setPhoneNum(std::string str) { phoneNum = str; }
 void Contact::setDarkSecret(std::string str) { darkSecret = str; }
 
-void Contact::add()
+int Contact::add()
 {
 	std::string tmp;
 	std::cout << "Enter First Name: ";
 	std::cin >> tmp;
+	if (std::cin.fail())
+		return (1);
 	setFirstName(tmp);
 	std::cout << "Enter Last Name: ";
 	std::cin >> tmp;
+	if (std::cin.fail())
+		return (1);
 	setLastName(tmp);
 	std::cout << "Enter Nickname: ";
 	std::cin >> tmp;
+	if (std::cin.fail())
+		return (1);
 	setNickname(tmp);
 	std::cout << "Enter Phone Number: ";
 	std::cin >> tmp;
+	if (std::cin.fail())
+		return (1);
 	setPhoneNum(tmp);
 	std::cout << "Enter Darkest Secret: ";
 	std::cin >> tmp;
+	if (std::cin.fail())
+		return (1);
 	setDarkSecret(tmp);
+	return (0);
 }
 
 std::string Contact::draw_line(std::string str)
@@ -39,6 +50,11 @@ std::string Contact::draw_line(std::string str)
 }
 void Contact::display()
 {
+	if (getFirstName() == "")
+	{
+		std::cout << "No Contact Found!\n";
+		return;
+	}
 	std::cout << "First Name: " << getFirstName() << '\n';
 	std::cout << "Last Name: " << getLastName() << '\n';
 	std::cout << "Nickname: " << getNickname() << '\n';
@@ -47,6 +63,8 @@ void Contact::display()
 }
 void Contact::search(int index)
 {
+	if (getFirstName() == "")
+		return;
 	std::cout << "|" << std::setw(10) << index << "|"
 			<< std::setw(10) << draw_line(getFirstName()) << "|"
 			<< std::setw(10) << draw_line(getLastName()) << "|"

@@ -12,9 +12,17 @@ int main()
 	{
 		std::cout << "Enter Command (ADD, SEARCH, EXIT): ";
 		std::cin >> cmd;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(10000, '\n');
+			std::cout << "Invalid input!\n";
+			break;
+		}
 		if (cmd == "ADD")
 		{
-			my_phonebook.contacts[index].add();
+			if (my_phonebook.contacts[index].add())
+				return (0);
 			index++;
 			if (index == 8)
 				index = 0;
@@ -27,6 +35,8 @@ int main()
 			{
 				std::cout << "Enter Contact Index To View: ";
 				std::cin >> indexToView;
+				if (std::cin.eof())
+					return (0);
 				if (std::cin.fail())
 				{
 					std::cin.clear();
@@ -34,9 +44,9 @@ int main()
 					indexToView = 0;
 				}
 				if (indexToView <= 8 && indexToView >= 1)
-				{
 					my_phonebook.contacts[indexToView - 1].display();
-				}
+				else
+					std::cout << "Invalid Index!\n";
 			}
 		}
 	}

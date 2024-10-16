@@ -22,7 +22,7 @@ class Contact {
 		void setNickname(std::string str);
 		void setPhoneNum(std::string str);
 		void setDarkSecret(std::string str);
-		void add();
+		int add();
 		std::string draw_line(std::string str);
 		void display();
 		void search(int index);
