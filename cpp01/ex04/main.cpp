@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:32 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/18 12:32:13 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/18 14:44:51 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "Replacer.hpp"
 
-#include "Contact.hpp"
-
-class PhoneBook {
-	private:
-		Contact contacts[8];
-	public:
-		Contact getContact(int index);
-		int addContact(int index);
-		void search();
-};
-
-#endif
+int main(int argc, char **argv)
+{
+	if (argc != 4)
+	{
+		std::cout << "Must Be Three Parameters!\n";
+		return (1);
+	}
+	Replacer my_replacer(argv[1]);
+	my_replacer.replace(argv[2], argv[3]);
+	return (0);
+}

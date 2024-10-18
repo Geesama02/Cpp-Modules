@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:32 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/18 11:53:29 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/18 12:06:08 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "HumanB.hpp"
 
-#include "Contact.hpp"
-
-class PhoneBook {
-	private:
-		Contact contacts[8];
-	public:
-		Contact getContact(int index);
-		int addContact(int index);
-		void search();
-};
-
-#endif
+HumanB::HumanB(std::string newName)
+{
+	name = newName;
+	myWeapon = NULL;
+}
+void	HumanB::attack()
+{
+	if (myWeapon)
+		std::cout << name << " attacks with their " << (*myWeapon).getType() << '\n';
+	else
+		std::cout << name << " attacks with their " << "Hand (no Weapon)" << '\n';
+}
+void	HumanB::setWeapon(Weapon &newWeapon)
+{
+	myWeapon = &newWeapon;
+}

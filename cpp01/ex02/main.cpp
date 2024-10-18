@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:32 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/18 10:29:39 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/18 10:39:28 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include <iostream>
 
-#include "Contact.hpp"
+int main()
+{
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string &stringREF = str;
 
-class PhoneBook {
-	private:
-		Contact contacts[8];
-	public:
-		Contact getContact(int index);
-		int addContact(int index);
-		void search();
-};
+	std::cout << &str << std::endl;
+	std::cout << stringPTR << std::endl;
+	std::cout << &stringREF << std::endl;
 
-#endif
+	std::cout << str << std::endl;
+	std::cout << *stringPTR << std::endl;
+	std::cout << stringREF << std::endl;
+	return (0);
+}

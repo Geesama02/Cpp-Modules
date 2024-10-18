@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:48:50 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/16 15:48:51 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:22:21 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void Contact::display()
 {
 	if (getFirstName() == "")
 	{
-		std::cout << "No Contact Found!\n";
+		std::cout << "Empty Contact Field!\n";
 		return;
 	}
 	std::cout << "First Name: " << getFirstName() << '\n';

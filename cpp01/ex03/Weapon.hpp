@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:32 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/18 11:03:12 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/18 11:13:22 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-#include "Contact.hpp"
+#include <iostream>
 
-class PhoneBook {
+class Weapon{
 	private:
-		Contact contacts[8];
+		std::string type;
 	public:
-		Contact getContact(int index);
-		int addContact(int index);
-		void search();
+		Weapon(std::string str);
+		const	std::string& getType() const;
+		void	setType(std::string str);
 };
 
 #endif

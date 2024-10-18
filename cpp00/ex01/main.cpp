@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:48:43 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/16 15:48:44 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:10:14 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@ int main()
 		std::cout << "Enter Command (ADD, SEARCH, EXIT): ";
 		std::cin >> cmd;
 		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore(10000, '\n');
-			std::cout << "Invalid input!\n";
-			break;
-		}
+			return (0);
 		if (cmd == "ADD")
 		{
-			if (my_phonebook.contacts[index].add())
+			if (my_phonebook.addContact(index))
 				return (0);
 			index++;
 			if (index == 8)
@@ -50,13 +45,11 @@ int main()
 				if (std::cin.eof())
 					return (0);
 				if (std::cin.fail())
-				{
-					std::cin.clear();
-					std::cin.ignore(10000, '\n');
 					indexToView = 0;
-				}
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				if (indexToView <= 8 && indexToView >= 1)
-					my_phonebook.contacts[indexToView - 1].display();
+					my_phonebook.getContact(indexToView - 1).display();
 				else
 					std::cout << "Invalid Index!\n";
 			}

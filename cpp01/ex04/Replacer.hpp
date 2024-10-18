@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Replacer.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:47:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:32 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/18 12:35:39 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/18 14:32:13 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef REPLACER_HPP
+# define REPLACER_HPP
 
-#include "Contact.hpp"
+#include <iostream>
+#include <fstream>
 
-class PhoneBook {
+class Replacer{
 	private:
-		Contact contacts[8];
+		std::string filename;
 	public:
-		Contact getContact(int index);
-		int addContact(int index);
-		void search();
+		Replacer(std::string fname);
+		int	replace(std::string s1, std::string s2);
 };
 
 #endif

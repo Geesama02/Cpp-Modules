@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:48:12 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/16 15:48:13 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:19:27 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,13 @@ void PhoneBook::search()
 		std::cout << "+----------+----------+----------+----------+\n";
 		i++;
 	}
+}
+
+Contact PhoneBook::getContact(int index)
+{
+	return (contacts[index]);
+}
+int PhoneBook::addContact(int index)
+{
+	return (contacts[index].add());
 }
