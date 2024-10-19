@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:38:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/18 15:39:20 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:51:00 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,20 @@ Replacer::Replacer(std::string fname)
 }
 int	Replacer::replace(std::string s1, std::string s2)
 {
-	std::ifstream f_read;
-	std::ofstream f_write;
 	std::string line;
 	size_t index;
-	f_read.open(filename);
-	f_write.open(filename + ".replace");
+	std::ifstream f_read(filename);
+	if (!f_read)
+	{
+		std::cerr << "Failed to open file to read!\n";
+		return (1);
+	}
+	std::ofstream f_write(filename + ".replace");
+	if (!f_write)
+	{
+		std::cerr << "Failed to open file to write!\n";
+		return (1);
+	}
 	while (std::getline(f_read, line))
 	{
 		index = line.find(s1);
@@ -37,5 +45,7 @@ int	Replacer::replace(std::string s1, std::string s2)
 		if (!f_read.eof())
 			f_write << '\n';
 	}
+	f_read.close();
+	f_write.close();
 	return (0);
 }
