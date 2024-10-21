@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 10:17:28 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/19 10:37:58 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:21:03 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,23 @@ void Harl::error( void )
 {
 	std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
+Harl::Harl()
+{
+	debugPtr = &Harl::debug;
+	infoPtr = &Harl::info;
+	warningPtr = &Harl::warning;
+	errorPtr = &Harl::error;
+}
+
 void Harl::complain( std::string level )
 {
-	
+	enum e_lvl {DEBUG, INFO, WARNING, ERROR, EMPTY};
+	e_lvl lvl = EMPTY;
+	if (level == "DEBUG") lvl = DEBUG;
+	else if (level == "INFO") lvl = INFO;
+	else if (level == "WARNING") lvl = WARNING;
+	else if (level == "ERROR") lvl = ERROR;
+	switch (lvl)
+		case DEBUG:
+			this->debug();
 }
