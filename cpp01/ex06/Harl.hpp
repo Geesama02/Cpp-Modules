@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 10:06:33 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/21 14:17:55 by oait-laa         ###   ########.fr       */
+/*   Created: 2024/10/19 10:06:51 by oait-laa          #+#    #+#             */
+/*   Updated: 2024/10/21 12:16:28 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int main()
-{
-	Harl my_harl;
-	
-	my_harl.complain("DEBUG");
-	my_harl.complain("INFO");
-	my_harl.complain("WARNING");
-	my_harl.complain("ERROR");
-	my_harl.complain("BLABLA");
-	return (0);
-}
+#include <iostream>
+
+class Harl {
+	private:
+		void debug( void );
+		void info( void );
+		void warning( void );
+		void error( void );
+		void (Harl::*debugPtr)(void);
+		void (Harl::*infoPtr)(void);
+		void (Harl::*warningPtr)(void);
+		void (Harl::*errorPtr)(void);
+	public:
+		Harl();
+		void complain( std::string level );
+};
+
+#endif
