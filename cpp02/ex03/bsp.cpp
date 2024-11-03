@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:20:08 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/02 17:33:00 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:39:35 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed cross_p3 = (a.getX() - c.getX()) * (point.getY() - c.getY())
 				- (a.getY() - c.getY()) * (point.getX() - c.getX());
 
-	std::cout << cross_p1 << '\n';
-	std::cout << cross_p2 << '\n';
-	std::cout << cross_p3 << '\n';
-	return true;
+	if ((cross_p1 > 0 && cross_p2 > 0 && cross_p3 > 0)
+		|| (cross_p1 < 0 && cross_p2 < 0 && cross_p3 < 0))
+		return (true);
+	return (false);
 }
