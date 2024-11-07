@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:14:17 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 10:51:39 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:55:40 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 class ClapTrap {
-	private:
+	protected:
 		std::string name;
 		int hit_points;
 		int energy_points;

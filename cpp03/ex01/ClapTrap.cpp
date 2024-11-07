@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:21:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 10:54:08 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:56:38 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ClapTrap::setAttackDamage(int AttackDamage) { attack_damage = AttackDamage;
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "ClapTrap: Default constructor called\n";
 	setName("unnamed");
 	setHitPoints(10);
 	setEnergyPoints(10);
@@ -32,7 +32,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string new_name)
 {
-	std::cout << "constructor with name called\n";
+	std::cout << "ClapTrap: Constructor with name called\n";
 	setName(new_name);
 	setHitPoints(10);
 	setEnergyPoints(10);
@@ -40,7 +40,7 @@ ClapTrap::ClapTrap(std::string new_name)
 }
 ClapTrap::ClapTrap(const ClapTrap& to_copy)
 {
-	std::cout << "Copy constructor called\n";
+	std::cout << "ClapTrap: Copy constructor called\n";
 	setName(to_copy.name);
 	setHitPoints(to_copy.hit_points);
 	setEnergyPoints(to_copy.energy_points);
@@ -48,7 +48,7 @@ ClapTrap::ClapTrap(const ClapTrap& to_copy)
 }
 ClapTrap& ClapTrap::operator=(const ClapTrap& to_copy)
 {
-	std::cout << "Copy assignment operator called\n";
+	std::cout << "ClapTrap: Copy assignment operator called\n";
 	if (this != &to_copy)
 	{
 		setName(to_copy.name);
@@ -60,7 +60,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& to_copy)
 }
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called\n";
+	std::cout << "ClapTrap: Destructor called\n";
 }
 
 void ClapTrap::attack(const std::string& target)
