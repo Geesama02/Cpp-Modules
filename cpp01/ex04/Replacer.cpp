@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:38:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/18 15:51:00 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:14:54 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	Replacer::replace(std::string s1, std::string s2)
 	std::ofstream f_write(filename + ".replace");
 	if (!f_write)
 	{
+		f_read.close();
 		std::cerr << "Failed to open file to write!\n";
 		return (1);
 	}

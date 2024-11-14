@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 10:17:28 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/10/21 15:00:38 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:26:45 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,25 @@ Harl::Harl()
 
 void Harl::complain( std::string level )
 {
-	enum e_lvl {DEBUG, INFO, WARNING, ERROR, EMPTY};
-	e_lvl lvl = EMPTY;
-	if (level == "DEBUG") lvl = DEBUG;
-	else if (level == "INFO") lvl = INFO;
-	else if (level == "WARNING") lvl = WARNING;
-	else if (level == "ERROR") lvl = ERROR;
-	switch (lvl) {
-		case DEBUG:
+	std::string arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int i = 0;
+	while (i < 4)
+	{
+		if (arr[i] == level)
+			break;
+		i++;
+	}
+	switch (i) {
+		case 0:
 			(this->*debugPtr)();
 			break;
-		case INFO:
+		case 1:
 			(this->*infoPtr)();
 			break;
-		case WARNING:
+		case 2:
 			(this->*warningPtr)();
 			break;
-		case ERROR:
+		case 3:
 			(this->*errorPtr)();
 			break;
 		default:
