@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:38:56 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/13 11:19:56 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:19:57 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int main()
 {
 	Zombie *z1 = newZombie("zombie1");
-	Zombie *z2 = newZombie("zombie2");
 	if (!z1)
 		return (1);
+	Zombie *z2 = newZombie("zombie2");
 	if (!z2)
 	{
 		delete z1;

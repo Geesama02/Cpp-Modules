@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:38:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/17 10:21:05 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:22:54 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,17 @@ int	Replacer::replace(std::string s1, std::string s2)
 		std::cerr << "Failed to open file to write!\n";
 		return (1);
 	}
-	while (std::getline(f_read, line))
+	std::getline(f_read, line, '\0');
+	index = line.find(s1);
+	while (index != std::string::npos)
 	{
-		index = line.find(s1);
-		while (index != std::string::npos)
-		{
-			line.erase(index, s1.length());
-			line.insert(index, s2);
-			index = line.find(s1, index + s2.length());
-		}
-		f_write << line;
-		if (!f_read.eof())
-			f_write << '\n';
+		if (s1.empty())
+			break;
+		line.erase(index, s1.length());
+		line.insert(index, s2);
+		index = line.find(s1, index + s2.length());
 	}
+	f_write << line;
 	f_read.close();
 	f_write.close();
 	return (0);
