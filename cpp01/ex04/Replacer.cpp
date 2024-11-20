@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:38:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/18 12:22:54 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:30:36 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ int	Replacer::replace(std::string s1, std::string s2)
 		std::cerr << "Failed to open file to write!\n";
 		return (1);
 	}
-	std::getline(f_read, line, '\0');
+	if(!std::getline(f_read, line, '\0'))
+	{
+		std::cerr << "Failed to read lines!\n";
+		f_read.close();
+		f_write.close();
+		return (1);
+	}
 	index = line.find(s1);
 	while (index != std::string::npos)
 	{
