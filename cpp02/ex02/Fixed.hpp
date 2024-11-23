@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:14:17 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/01 14:39:59 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:51:26 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ class Fixed {
 		Fixed ( const int val );
 		Fixed& operator=(const Fixed& to_copy);
 		~Fixed ();
-		bool operator>(const Fixed& to_compare);
-		bool operator<(const Fixed& to_compare);
-		bool operator>=(const Fixed& to_compare);
-		bool operator<=(const Fixed& to_compare);
-		bool operator==(const Fixed& to_compare);
-		bool operator!=(const Fixed& to_compare);
-		Fixed operator+(const Fixed& other);
-		Fixed operator-(const Fixed& other);
-		Fixed operator*(const Fixed& other);
-		Fixed operator/(const Fixed& other);
+		bool operator>(const Fixed& to_compare) const;
+		bool operator<(const Fixed& to_compare) const;
+		bool operator>=(const Fixed& to_compare) const;
+		bool operator<=(const Fixed& to_compare) const;
+		bool operator==(const Fixed& to_compare) const;
+		bool operator!=(const Fixed& to_compare) const;
+		Fixed operator+(const Fixed& other) const;
+		Fixed operator-(const Fixed& other) const;
+		Fixed operator*(const Fixed& other) const;
+		Fixed operator/(const Fixed& other) const;
 		Fixed& operator++();
 		Fixed operator++(int);
 		Fixed& operator--();

@@ -6,17 +6,13 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 12:06:34 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/13 10:54:19 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:49:12 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
 int main( void ) {
-	// Point p3(6.05, 7.82);
-	// Point p2(11.6, 3.2);
-	// Point p1(2.5, 3.2);
-	// Point pp(6.48, 3.19);
 	std::cout << "answer : " << bsp(Point(3, 1), Point(1, 3), Point(4, 3), Point(3.5, 2)) << '\n';
 	return 0;
 }

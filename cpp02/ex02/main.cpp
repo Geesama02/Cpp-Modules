@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 12:06:34 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/01 14:45:08 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/22 11:11:34 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int main( void ) {
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	std::cout << Fixed::min( a, b ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
 	return 0;
 }
