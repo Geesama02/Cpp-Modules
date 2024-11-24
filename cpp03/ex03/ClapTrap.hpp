@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:14:17 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 10:55:40 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:02:53 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ class ClapTrap {
 		ClapTrap (const ClapTrap& to_copy);
 		ClapTrap& operator=(const ClapTrap& to_copy);
 		~ClapTrap ();
-		std::string getName();
-		int getHitPoints();
-		int getEnergyPoints();
-		int getAttackDamage();
+		std::string getName() const;
+		int getHitPoints() const;
+		int getEnergyPoints() const;
+		int getAttackDamage() const;
 		void setName(std::string newName);
 		void setHitPoints(int HitPoints);
 		void setEnergyPoints(int EnergyPoints);

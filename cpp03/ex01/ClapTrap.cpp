@@ -6,16 +6,16 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:21:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 10:56:38 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:01:20 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-std::string ClapTrap::getName() { return (name); }
-int ClapTrap::getHitPoints() { return (hit_points); }
-int ClapTrap::getEnergyPoints() { return (energy_points); }
-int ClapTrap::getAttackDamage() { return (attack_damage); }
+std::string ClapTrap::getName() const { return (name); }
+int ClapTrap::getHitPoints() const { return (hit_points); }
+int ClapTrap::getEnergyPoints() const { return (energy_points); }
+int ClapTrap::getAttackDamage() const { return (attack_damage); }
 void ClapTrap::setName(std::string newName) { name = newName; }
 void ClapTrap::setHitPoints(int HitPoints) { hit_points = HitPoints; }
 void ClapTrap::setEnergyPoints(int EnergyPoints) { energy_points = EnergyPoints; }
