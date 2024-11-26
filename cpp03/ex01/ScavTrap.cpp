@@ -6,14 +6,14 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:16:01 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 11:07:11 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:15:05 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap: Default constructor called\n";
 	setName("unnamed");
@@ -24,7 +24,6 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap (std::string new_name) : ClapTrap(new_name)
 {
 	std::cout << "ScavTrap: Constructor with name called\n";
-	setName(new_name);
 	setHitPoints(100);
 	setEnergyPoints(50);
 	setAttackDamage(20);

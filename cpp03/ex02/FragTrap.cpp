@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:27:54 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/09 10:32:37 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:31:01 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ FragTrap::FragTrap() : ClapTrap()
 FragTrap::FragTrap (std::string new_name) : ClapTrap(new_name)
 {
 	std::cout << "FragTrap: Constructor with name called\n";
-	setName(new_name);
 	setHitPoints(100);
 	setEnergyPoints(100);
 	setAttackDamage(30);

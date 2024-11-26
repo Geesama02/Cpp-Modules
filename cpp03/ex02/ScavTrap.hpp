@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:00:37 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/07 10:56:04 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:32:08 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class ScavTrap : public ClapTrap {
 		~ScavTrap ();
 		void guardGate();
 		void attack(const std::string& target);
-		
 };
 
 #endif
