@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:25:47 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/11 11:13:48 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:06:46 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Animal::Animal()
 {
 	std::cout << "Animal: Default constructor called\n";
+	type = "Animal";
 }
 Animal::Animal(const Animal& to_copy)
 {

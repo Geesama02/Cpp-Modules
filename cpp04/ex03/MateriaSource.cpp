@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:49:37 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/12 15:57:12 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:01:44 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ MateriaSource::MateriaSource()
 MateriaSource::MateriaSource(const MateriaSource& to_copy)
 {
 	int i = 0;
+	slots = new AMateria*[4];
 	while(i < 4)
 	{
-		delete slots[i];
 		if (slots[i] != NULL)
 			slots[i] = to_copy.slots[i]->clone();
 		else
@@ -42,9 +42,11 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& to_copy)
 		int i = 0;
 		while(i < 4)
 		{
-			delete slots[i];
 			if (slots[i] != NULL)
+			{
+				delete slots[i];
 				slots[i] = to_copy.slots[i]->clone();
+			}
 			else
 				slots[i] = NULL;
 			i++;

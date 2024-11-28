@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:08:44 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/12 10:18:28 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:46:51 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int main()
 {
 	// const Animal* meta = new Animal();
+	// Animal tst;
 	const WrongAnimal* meta2 = new WrongAnimal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
