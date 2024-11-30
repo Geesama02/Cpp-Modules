@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:49:37 by oait-laa          #+#    #+#             */
-/*   Updated: 2024/11/28 14:01:44 by oait-laa         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:08:13 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	while (i < 4)
 	{
 		if (slots[i] && slots[i]->getType() == type)
-		{
 			return (slots[i]->clone());
-		}
 		i++;
 	}
 	return (0);
