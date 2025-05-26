@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 10:31:01 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/26 11:34:45 by oait-laa         ###   ########.fr       */
+/*   Created: 2025/05/24 15:14:12 by oait-laa          #+#    #+#             */
+/*   Updated: 2025/05/25 10:31:02 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
-#include <cstdlib>
+#include <fstream>
 
-class RobotomyRequestForm : public AForm {
+class ShrubberyCreationForm : public AForm {
     private:
         std::string target;
     public:
-        RobotomyRequestForm();
-        RobotomyRequestForm(RobotomyRequestForm& cpy);
-        RobotomyRequestForm(std::string t);
-        RobotomyRequestForm& operator=(RobotomyRequestForm& cpy);
+        ShrubberyCreationForm();
+        ShrubberyCreationForm(ShrubberyCreationForm& cpy);
+        ShrubberyCreationForm(std::string t);
+        ShrubberyCreationForm& operator=(ShrubberyCreationForm& cpy);
         void execute(Bureaucrat const& executor) const;
-        ~RobotomyRequestForm();
+        ~ShrubberyCreationForm();
 };
 
 #endif

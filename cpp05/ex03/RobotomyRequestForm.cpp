@@ -6,19 +6,19 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 10:32:22 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/26 14:50:22 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:07:03 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("roboto", false, 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy request", false, 72, 45) {
     target = "Default_Target";
 }
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& cpy) : AForm("roboto", false, 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& cpy) : AForm("robotomy request", false, 72, 45) {
     target = cpy.target;
 }
-RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm("roboto", false, 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm("robotomy request", false, 72, 45) {
     target = t;
 }
 RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm& cpy) {
