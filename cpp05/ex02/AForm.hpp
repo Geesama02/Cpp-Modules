@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 14:12:29 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/24 16:44:31 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:26:12 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ class AForm {
             public:
                 virtual const char* what() const throw();
         };
+        class FileNotOpen : public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
         AForm();
         AForm(AForm& cpy);
         AForm(const std::string& n, bool s, const int sG, const int eG);
@@ -44,7 +48,7 @@ class AForm {
         const int& getExecGrade() const;
         void beSigned(Bureaucrat& bureaucrat);
         virtual void execute(Bureaucrat const& executor) const = 0;
-        ~AForm();
+        virtual ~AForm();
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& obj);

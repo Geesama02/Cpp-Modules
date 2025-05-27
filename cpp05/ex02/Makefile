@@ -1,6 +1,6 @@
 CPP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = Form
+NAME = AForm
 SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJ = ${SRC:.cpp=.o}
 

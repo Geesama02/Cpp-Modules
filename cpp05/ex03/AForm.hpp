@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 14:12:29 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/26 17:04:36 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:38:59 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ class AForm {
                 virtual const char* what() const throw();
         };
         class FormNotSigned : public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
+                class FileNotOpen : public std::exception {
             public:
                 virtual const char* what() const throw();
         };

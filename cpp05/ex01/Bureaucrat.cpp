@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:43:15 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/24 13:12:01 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:19:55 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "Form.hpp"
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return ("Bureaucrat::GradeTooHighException");
+    return ("Grade Too High!");
 }
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return ("Bureaucrat::GradeTooLowException");
+    return ("Grade Too Low!");
 }
 
 Bureaucrat::Bureaucrat() : name("unnamed"), grade(150) {}
@@ -31,7 +31,8 @@ Bureaucrat::Bureaucrat(const std::string& n, int g) : name(n) {
 }
 Bureaucrat::Bureaucrat(Bureaucrat& cpy) : name(cpy.name), grade(cpy.grade) {}
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& cpy) {
-    (void)cpy;
+    if (this != &cpy)
+        grade = cpy.grade;
     return (*this);
 }
 const std::string Bureaucrat::getName() const {

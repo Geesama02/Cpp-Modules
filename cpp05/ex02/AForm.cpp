@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 14:18:25 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/24 15:47:14 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:21:34 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ const char* AForm::GradeTooLowException::what() const throw() {
 const char* AForm::FormNotSigned::what() const throw() {
     return ("Form is not Signed!");
 }
+const char* AForm::FileNotOpen::what() const throw() {
+    return ("Error Opening File!");
+}
 AForm::AForm() : name("unnamed"), isSigned(false), signGrade(150), execGrade(150) {}
 AForm::AForm(AForm& cpy) : name(cpy.name), isSigned(cpy.isSigned), signGrade(cpy.signGrade), execGrade(cpy.execGrade) {}
 AForm::AForm(const std::string& n, bool s, const int sG, const int eG) : name(n), isSigned(s), signGrade(sG), execGrade(eG) {
@@ -30,7 +33,8 @@ AForm::AForm(const std::string& n, bool s, const int sG, const int eG) : name(n)
         throw AForm::GradeTooLowException();
 }
 AForm& AForm::operator=(AForm& cpy) {
-    (void)cpy;
+    if (this != &cpy)
+        isSigned = cpy.isSigned;
     return (*this);
 }
 const std::string& AForm::getName() const {

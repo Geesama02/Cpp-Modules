@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 15:09:46 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/24 13:15:39 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 10:52:34 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ Form::Form(const std::string& n, bool s, const int sG, const int eG) : name(n), 
         throw Form::GradeTooLowException();
 }
 Form& Form::operator=(Form& cpy) {
-    (void)cpy;
+    if (this != &cpy)
+        isSigned = cpy.isSigned;
     return (*this);
 }
 const std::string& Form::getName() const {

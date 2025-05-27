@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:37:52 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/24 13:29:18 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:01:34 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main() {
         Form f1("Form1", false, 10, 15);
         b1.signForm(f1);
         b2.signForm(f1);
+        std::cout << "Sign => " <<f1.getSign() << std::endl;
     }
     catch(std::exception& e)
     {

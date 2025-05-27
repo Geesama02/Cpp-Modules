@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:37:52 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/26 14:52:31 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:28:07 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int main() {
     try
     {
-        Bureaucrat b1("Bureaucrat1", 139);
+        Bureaucrat b1("Bureaucrat1", 137);
         Bureaucrat b2("Bureaucrat2", 40);
         Bureaucrat b3("Bureaucrat3", 5);
         AForm *f1 = new ShrubberyCreationForm("home");
