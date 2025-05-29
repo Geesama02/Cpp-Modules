@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:07:30 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/28 17:25:32 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:22:20 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int isDouble(std::string str) {
 void handleChar(std::string str) {
     std::cout << "char: " << str[0] << std::endl;
     std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
-    std::cout << "float: " << static_cast<float>(str[0]) << std::endl;
-    std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
+    std::cout << "float: " << static_cast<float>(str[0]) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(str[0]) << ".0" << std::endl;
 }
 void handleNum(std::string str) {
     double val;
@@ -82,16 +82,18 @@ void handleNum(std::string str) {
     errno = 0;
     val = strtod(str.c_str(), &str_end);
     char c = static_cast<char>(val);
-    if (std::isprint(c))
+    if (errno == ERANGE)
+        std::cout << "char: " << "impossible" << std::endl;
+    else if (std::isprint(c))
         std::cout << "char: " << c << std::endl;
     else
         std::cout << "char: " << "Non displayable" << std::endl;
-    if (val < std::numeric_limits<int>::min() || val > std::numeric_limits<int>::max())
+    if (errno == ERANGE || val < INT_MIN || val > INT_MAX)
         std::cout << "int: " << "impossible" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(val) << std::endl;
     float val_f = static_cast<float>(val);
-    if (std::isinf(val_f) || val < std::numeric_limits<float>::min() || val > std::numeric_limits<float>::max())
+    if (errno == ERANGE || val < -std::numeric_limits<float>::max() || val > std::numeric_limits<float>::max())
         std::cout << "float: " << "impossible" << std::endl;
     else {
         if (val_f == floorf(val_f))
@@ -103,14 +105,41 @@ void handleNum(std::string str) {
         std::cout << "double: " << "impossible" << std::endl;
     else {
         double val_d = static_cast<double>(val);
-        if (std::fmod(val_d, 1.0))
+        if (!std::fmod(val_d, 1.0))
             std::cout << "double: " << val_d << ".0" << std::endl;
         else
             std::cout << "double: " << val_d << std::endl;
     }
 }
+void handleErr() {
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+}
+void handleSpecial(std::string& str) {
+    std::cout << "char: " << "impossible" << std::endl;
+    std::cout << "int: " << "impossible" << std::endl;
+    if (str == "nan" || str == "nan") {
+        std::cout << "float: " << static_cast<float>(NAN) << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(NAN) << std::endl;
+    }
+    else if (str == "+inf" || str == "+inff") {
+        std::cout << "float: +" << static_cast<float>(INFINITY) << "f" << std::endl;
+        std::cout << "double: +" << static_cast<double>(INFINITY) << std::endl;
+    }
+    else if (str == "-inf" || str == "-inff") {
+        std::cout << "float: " << static_cast<float>(-INFINITY) << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(-INFINITY) << std::endl;
+    }
+}
 void ScalarConverter::convert(std::string str) {
-    if (isChar(str))
+    if (str == "nan" || str == "+inf" || str == "-inf" 
+        || str == "nanf" || str == "+inff" || str == "-inff") {
+        handleSpecial(str);
+        return ;
+    }
+    else if (isChar(str))
         handleChar(str);
     else if (isInt(str))
         handleNum(str);
@@ -118,5 +147,7 @@ void ScalarConverter::convert(std::string str) {
         handleNum(str);
     else if (isDouble(str))
         handleNum(str);
+    else
+        handleErr();
 }
 ScalarConverter::~ScalarConverter() {}
