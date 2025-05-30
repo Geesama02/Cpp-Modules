@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:07:30 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/05/29 20:22:20 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/05/30 09:22:31 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,11 @@ void handleErr() {
 void handleSpecial(std::string& str) {
     std::cout << "char: " << "impossible" << std::endl;
     std::cout << "int: " << "impossible" << std::endl;
-    if (str == "nan" || str == "nan") {
-        std::cout << "float: " << static_cast<float>(NAN) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(NAN) << std::endl;
-    }
-    else if (str == "+inf" || str == "+inff") {
-        std::cout << "float: +" << static_cast<float>(INFINITY) << "f" << std::endl;
-        std::cout << "double: +" << static_cast<double>(INFINITY) << std::endl;
-    }
-    else if (str == "-inf" || str == "-inff") {
-        std::cout << "float: " << static_cast<float>(-INFINITY) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(-INFINITY) << std::endl;
-    }
+    char *str_end;
+    double val;
+    val = strtof(str.c_str(), &str_end);
+    std::cout << "float: " << static_cast<float>(val) << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(val) << std::endl;
 }
 void ScalarConverter::convert(std::string str) {
     if (str == "nan" || str == "+inf" || str == "-inf" 
