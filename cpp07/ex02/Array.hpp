@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 14:36:54 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/06/01 11:52:09 by oait-laa         ###   ########.fr       */
+/*   Created: 2025/06/01 12:29:25 by oait-laa          #+#    #+#             */
+/*   Updated: 2025/06/01 15:50:12 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
+
+#include <iostream>
 
 template <typename T>
-void printC(const T& x ) {
-    std::cout << x << std::endl;
-}
+class Array {
+    private:
+        T* arr;
+        unsigned int arrSize;
+    public:
+        Array();
+        Array(unsigned int n);
+        Array(const Array& cpy);
+        Array& operator=(const Array& cpy);
+        T& operator[](unsigned int index) const;
+        unsigned int size() const;
+        ~Array();
+};
 
-void print(int& x ) {
-    x++;
-    std::cout << x << std::endl;
-}
+#include "Array.tpp"
 
-int main() {
-    int arr[] = { 0, 1, 2, 3, 4 };
-    std::string names[] = { "name1", "name2", "name3" };
-    iter(arr, 5, print);
-    iter(names, 3, printC);
-    iter(arr, 5, printC);
-    return (0);
-}
+#endif
