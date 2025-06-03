@@ -1,6 +1,6 @@
 CPP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = templates
+NAME = span
 SRC = main.cpp Span.cpp
 OBJ = ${SRC:.cpp=.o}
 

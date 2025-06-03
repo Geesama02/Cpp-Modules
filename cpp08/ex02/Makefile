@@ -1,6 +1,6 @@
 CPP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = templates
+NAME = MutantStack
 SRC = main.cpp
 OBJ = ${SRC:.cpp=.o}
 

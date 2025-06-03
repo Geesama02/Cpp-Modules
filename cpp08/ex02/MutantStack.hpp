@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 10:45:22 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/06/02 20:40:55 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/06/03 09:49:16 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@
 template<class T, class Container = std::deque<T> >
 class MutantStack : public std::stack<T> {
     public:
-        class iterator
+        struct iterator
         {
-        private:
-            T* ptr;
-        public:
-            iterator() {}
-            iterator(T* p) { ptr = p; }
+            typename Container::iterator ptr;
+            iterator() { ptr = NULL; }
+            iterator(typename Container::iterator p) { ptr = p; }
             iterator(const iterator& cpy) { ptr = cpy.ptr; }
             iterator& operator=(const iterator& cpy) {
                 if (this != &cpy)
@@ -39,15 +37,15 @@ class MutantStack : public std::stack<T> {
             bool operator==(const iterator& other) const {
                 return (ptr == other.ptr);
             };
-            T operator*() { return(*ptr); }
+            T& operator*() { return(*ptr); }
             iterator& operator++() { ptr++; return (*this); }
             iterator operator++(int) { iterator tmp = *this; ptr++; return (tmp); }
             iterator& operator--() { ptr--; return (*this); }
             iterator operator--(int) { iterator tmp = *this; ptr--; return (tmp); }
             ~iterator() {}
         };
-        iterator begin() { return (iterator(this->c)); }
-        iterator end() { return (iterator(this->c + this->size())); }
+        iterator begin() { return (iterator(this->c.begin())); }
+        iterator end() { return (iterator(this->c.end())); }
         MutantStack() : std::stack<T>() {};
         MutantStack(const MutantStack& cpy) : std::stack<T>(cpy) {};
         MutantStack& operator=(const MutantStack& cpy) {
