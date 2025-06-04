@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:49:07 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/06/03 19:47:56 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:29:17 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,22 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
+#include <climits>
 #include <iomanip>
 
 class BitcoinExchange
 {
     private:
-        std::map<std::string, float> db;
+        std::map<time_t, float> db;
     public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange& cpy);
         BitcoinExchange& operator=(const BitcoinExchange& cpy);
         void parseData();
+        void evaluate(std::string file);
         int checkData(std::string& line);
-        void checkDate(std::string& line);
+        float getCorrectDate(std::string& line);
+        time_t getDate(std::string& line);
         ~BitcoinExchange();
 };
 
