@@ -1,6 +1,6 @@
 CPP = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = btc
+NAME = RPN
 SRC = main.cpp RPN.cpp
 OBJ = ${SRC:.cpp=.o}
 
@@ -9,7 +9,7 @@ all: ${NAME}
 ${NAME} : ${OBJ}
 	${CPP} ${FLAGS} -o ${NAME} ${SRC}
 
-%.o: %.cpp RPN.hpp
+%.o: %.cpp RPN.hpp`	
 	${CPP} ${FLAGS} -c $< -o $@
 
 clean:

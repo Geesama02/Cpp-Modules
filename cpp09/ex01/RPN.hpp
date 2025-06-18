@@ -6,7 +6,7 @@
 /*   By: sama <sama@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:49:07 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/06/17 15:53:39 by sama             ###   ########.fr       */
+/*   Updated: 2025/06/18 14:59:08 by sama             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <stack>
+#include <sstream>
 
 class RPN
 {
@@ -24,6 +25,7 @@ class RPN
         RPN();
         RPN(const RPN& cpy);
         RPN& operator=(const RPN& cpy);
+        void calculate(std::string rpn);
         ~RPN();
 };
 
