@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:49:07 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/11 14:03:03 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:53:16 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ class PmergeMe
         void parse(char** argv);
         void mergeSort();
         int isInt(std::string str);
+		void merge(std::vector<int>& arr, unsigned int pair);
+		void swap(int& n1, int& n2);
+		void sortPairs(std::vector<int>& pairs, int pairSize);
         ~PmergeMe();
 };
 
