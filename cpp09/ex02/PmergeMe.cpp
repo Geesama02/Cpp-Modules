@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:09:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/14 16:54:25 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:45:27 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,78 @@ void PmergeMe::sortPairs(std::vector<int>& pairs, int pairSize) {
 	// 		swap(it->front(), it->back());
 	// }
 	unsigned int i = 0;
-	while(i < pairs.size()) {
+	while(i + pairSize - 1 < pairs.size()) {
+		// std::cout << "pairs[i + pairSize / 2 - 1] -> " << pairs[i + pairSize / 2 - 1] << std::endl; 
+		// std::cout << "pairs[i + pairSize - 1] -> " << pairs[i + pairSize - 1] << std::endl; 
 		if (pairs[i + pairSize / 2 - 1] > pairs[i + pairSize - 1]) {
-			std::cout << "pairs[i + pairSize / 2 - 1] -> " << pairs[i + pairSize / 2 - 1] << std::endl; 
-			std::cout << "pairs[i + pairSize - 1] -> " << pairs[i + pairSize - 1] << std::endl; 
+			unsigned int j = i;
+			// std::cout << "Pair inside -> ";
+			// while (j != (i + pairSize)) {
+			// 	// std::cout << "Before swapped -> " << pairs[j] << ", " << pairs[j + pairSize / 2] << std::endl;
+			// 	std::cout << pairs[j] << ' ';
+			// 	j++;
+			// }
+			// std::cout << std::endl;
+			// j = i;
+			while (j != (i + pairSize / 2)) {
+				// std::cout << "Before swapped -> " << pairs[j] << ", " << pairs[j + pairSize / 2] << std::endl;
+				swap(pairs[j], pairs[j + pairSize / 2]);
+				// std::cout << "swapped -> " << pairs[j] << ", " << pairs[j + pairSize / 2] << std::endl;
+				j++;
+			}
 		}
 		i += pairSize;
 	}
 }
 
+void PmergeMe::insert(std::vector<int>& pairs, unsigned int pairSize) {
+	unsigned int i = 0;
+	std::vector<int> pend;
+	std::vector<int> main;
+	std::vector<int> unused;
+	unsigned int j = 0;
+	while((i + pairSize / 2) <= pairs.size()) {
+		j = i;
+		if (i == 0) {
+			while (j < pairSize && j < pairs.size()) {
+				main.push_back(pairs[j++]);
+			}
+		}
+		else {
+			// std::cout << "start -> " << pairs[j] << std::endl;
+			while (j < (i + pairSize / 2) && (i + pairSize / 2) <= pairs.size()) {
+				pend.push_back(pairs[j++]);
+			}
+			while (j < (i + pairSize) && (i + pairSize) <= pairs.size()) {
+				main.push_back(pairs[j++]);
+			}
+			// if ((i + pairSize / 2) >= pairs.size()) {
+			// 	i = j;
+			// 	break;
+			// }
+		}
+		i += pairSize;
+	}
+	while (j < pairs.size()) {
+		unused.push_back(pairs[j]);
+		j++;
+	}
+	printVector("Main -> ", main);
+	printVector("Pend -> ", pend);
+	printVector("Unused -> ", unused);
+}
+
 void PmergeMe::merge(std::vector<int>& arr, unsigned int pairSize) {
 	std::cout << "size -> " << arr.size() << std::endl;
 	pairSize *= 2;
-	std::cout << "pairSize -> " << pairSize << std::endl;
 	// std::vector<std::vector<int> > pairSizes;
-	if (pairSize > (arr.size() / 2))
+	if (pairSize > arr.size())
 		return ;
     // }
 	sortPairs(arr, pairSize);
 	std::vector<int> tmp;
     for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
+		// std::cout << "Pushed -> " << *it << std::endl;
 		tmp.push_back(*it);
         if (tmp.size() == pairSize) {
 			printVector("Pair", tmp);
@@ -93,9 +145,11 @@ void PmergeMe::merge(std::vector<int>& arr, unsigned int pairSize) {
 		}
 	}
 	printVector("Leftover", tmp);
-	std::cout << '\n';
+	printVector("Final Seq", arr);
 	std::cout << "==========================" << std::endl;
 	merge(arr, pairSize);
+	insert(arr, pairSize);
+	std::cout << "pairSize -> " << pairSize << std::endl;
 	// int p1 = arr.size() / 2;
 	// int p2 = arr.size() - p1;
 	// std::cout << "p2 -> " << p2 << std::endl;
