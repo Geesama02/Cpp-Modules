@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:09:59 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/15 16:45:27 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/16 16:51:43 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ int PmergeMe::isInt(std::string str) {
 }
 
 // delete later
-void printVector(std::string title, std::vector<int> vec) {
+void printVectorT(std::string title, std::vector<int> vec) {
 	std::cout << title << " -> ";
     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++) {
         std::cout << *it << ' ';
     }
     std::cout << std::endl;
+}
+void printVector(std::vector<int> vec) {
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++) {
+        std::cout << *it << ' ';
+    }
 }
 
 void PmergeMe::swap(int& n1, int& n2) {
@@ -90,41 +95,111 @@ void PmergeMe::sortPairs(std::vector<int>& pairs, int pairSize) {
 	}
 }
 
+int PmergeMe::jacobsthalNum(int n)
+{
+	return ((pow(2, n) - pow(-1, n)) / 3);
+}
+
+std::vector<int> PmergeMe::getJacobsthalIndex(int n) {
+	int i = 3;
+	std::vector<int> indexs;
+	while (i <= n) {
+		int index = jacobsthalNum(i);
+		if (index > n)
+			break;
+		indexs.push_back(index);
+		int prevIndex = jacobsthalNum(i - 1);
+		int diff = index - prevIndex;
+		int j = 1;
+		while(j < diff) {
+			indexs.push_back(index - j);
+			j++;
+		}
+		i++;
+	}
+	return (indexs);
+}
+
+bool comp(const std::vector<int>& a, const std::vector<int>& b) {
+	return (a.back() < b.back());
+}
+
+int getOrder(std::vector<int> indexes, int n) {
+	int c = 3;
+	for(std::vector<int>::iterator it = indexes.begin(); it != indexes.end(); it++) {
+		if (*it == n)
+			break;
+		if (*it < n)
+			c++;
+	}
+	return (c);
+}
+
 void PmergeMe::insert(std::vector<int>& pairs, unsigned int pairSize) {
 	unsigned int i = 0;
-	std::vector<int> pend;
-	std::vector<int> main;
+	std::vector<std::vector<int> > pend;
+	std::vector<std::vector<int> > main;
 	std::vector<int> unused;
 	unsigned int j = 0;
 	while((i + pairSize / 2) <= pairs.size()) {
 		j = i;
-		if (i == 0) {
-			while (j < pairSize && j < pairs.size()) {
-				main.push_back(pairs[j++]);
-			}
-		}
-		else {
-			// std::cout << "start -> " << pairs[j] << std::endl;
-			while (j < (i + pairSize / 2) && (i + pairSize / 2) <= pairs.size()) {
-				pend.push_back(pairs[j++]);
-			}
-			while (j < (i + pairSize) && (i + pairSize) <= pairs.size()) {
-				main.push_back(pairs[j++]);
-			}
-			// if ((i + pairSize / 2) >= pairs.size()) {
-			// 	i = j;
-			// 	break;
-			// }
-		}
+		std::vector<int> tmp;
+		while (j < (i + pairSize / 2) && (i + pairSize / 2) <= pairs.size())
+			tmp.push_back(pairs[j++]);
+		if (!tmp.empty() && i != 0)
+			pend.push_back(tmp);
+		else if (!tmp.empty() && i == 0)
+			main.push_back(tmp);
+		tmp.clear();
+		while (j < (i + pairSize) && (i + pairSize) <= pairs.size())
+			tmp.push_back(pairs[j++]);
+		if (!tmp.empty())
+			main.push_back(tmp);
 		i += pairSize;
 	}
 	while (j < pairs.size()) {
 		unused.push_back(pairs[j]);
 		j++;
 	}
-	printVector("Main -> ", main);
-	printVector("Pend -> ", pend);
-	printVector("Unused -> ", unused);
+	std::cout << "Main -> ";
+	for(std::vector<std::vector<int> >::iterator it = main.begin(); it != main.end(); it++) {
+		std::cout << "( ";
+		printVector(*it);
+		std::cout << ") ";
+	}
+	std::cout << std::endl;
+	std::cout << "Pend -> ";
+	for(std::vector<std::vector<int> >::iterator it = pend.begin(); it != pend.end(); it++) {
+		std::cout << "( ";
+		printVector(*it);
+		std::cout << ") ";
+	}
+	std::cout << std::endl;
+	printVectorT("Unused -> ", unused);
+	// std::cout << "Num -> " << pend.size() + 1 << std::endl;
+	// std::cout << "jacobsthalNum -> " << jacobsthalNum(pend.size() + 1) << std::endl;
+	std::vector<int> indexs = getJacobsthalIndex(pend.size() + 1);
+	printVectorT("Indexs", indexs);
+	for(std::vector<int>::iterator it = indexs.begin(); it != indexs.end(); it++) {
+		std::vector<std::vector<int> >::iterator it2 = std::upper_bound(main.begin(), main.begin() + getOrder(indexs, *it), pend[*it - 2], comp);
+		// std::cout << "getOrder(indexs, *it) -> " << getOrder(indexs, *it) << std::endl;
+		std::cout << "checking -> ";
+		std::cout << "( ";
+		printVector(pend[*it - 2]);
+		std::cout << ") ";
+		std::cout << "in -> ";
+		std::cout << "( ";
+		printVector(*it2);
+		std::cout << ") ";
+		std::cout << "-> " << it2->back() << std::endl;
+		main.insert(it2, pend[*it - 2]);
+	}
+	std::cout << "Main After -> ";
+	for(std::vector<std::vector<int> >::iterator it = main.begin(); it != main.end(); it++) {
+		std::cout << "( ";
+		printVector(*it);
+		std::cout << ") ";
+	}
 }
 
 void PmergeMe::merge(std::vector<int>& arr, unsigned int pairSize) {
@@ -135,17 +210,17 @@ void PmergeMe::merge(std::vector<int>& arr, unsigned int pairSize) {
 		return ;
     // }
 	sortPairs(arr, pairSize);
-	std::vector<int> tmp;
-    for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
-		// std::cout << "Pushed -> " << *it << std::endl;
-		tmp.push_back(*it);
-        if (tmp.size() == pairSize) {
-			printVector("Pair", tmp);
-			tmp.clear();
-		}
-	}
-	printVector("Leftover", tmp);
-	printVector("Final Seq", arr);
+	// std::vector<int> tmp;
+    // for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
+	// 	// std::cout << "Pushed -> " << *it << std::endl;
+	// 	tmp.push_back(*it);
+    //     if (tmp.size() == pairSize) {
+	// 		printVectorT("Pair", tmp);
+	// 		tmp.clear();
+	// 	}
+	// }
+	// printVectorT("Leftover", tmp);
+	printVectorT("Final Seq", arr);
 	std::cout << "==========================" << std::endl;
 	merge(arr, pairSize);
 	insert(arr, pairSize);
