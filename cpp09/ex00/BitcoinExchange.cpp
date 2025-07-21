@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 15:24:21 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/06/04 10:45:10 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:10:39 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ time_t BitcoinExchange::getDate(std::string& line) {
     if (date == -1)
         throw std::runtime_error("Invalid DB file!");
     return (date);
-    // char buffer[80];
-    // std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", localtime(&date));
-    // std::cout << "Date " << ": " << buffer << " (time_t: " << date << ")" << std::endl;
 }
 int BitcoinExchange::checkData(std::string& line) {
     size_t pos = line.find(",");
@@ -52,7 +49,7 @@ float BitcoinExchange::getCorrectDate(std::string& line) {
         if (db.upper_bound(date) == db.begin())
             return (db.begin()->second);
         else
-            return ((db.upper_bound(date)--)->second);
+            return ((--db.upper_bound(date))->second);
     }
     else
         return (db[date]);
@@ -96,6 +93,8 @@ void BitcoinExchange::parseData() {
     if (!data)
         throw std::runtime_error("DB file not found!");
     std::string line;
+	if (!std::getline(data, line))
+		throw std::runtime_error("Invalid DB file!");
     while (std::getline(data, line)) {
         checkData(line);
     }

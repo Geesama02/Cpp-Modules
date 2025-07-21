@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:49:07 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/19 15:54:12 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:35:25 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ class PmergeMe
 		double timeNow();
         void mergeSort();
         int isInt(std::string str);
-		// void merge(std::vector<int>& arr, unsigned int pairSize);
-		// void insert(std::vector<int>& arr, unsigned int pairSize);
-		void swap(int& n1, int& n2);
-		int jacobsthalNum(int n);
-		// std::vector<int> getJacobsthalIndex(int n);
-		// void sortPairs(std::vector<int>& pairs, int pairSize);
         ~PmergeMe();
 };
 
