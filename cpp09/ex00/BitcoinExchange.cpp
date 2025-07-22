@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 15:24:21 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/21 16:10:39 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:13:04 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,44 @@ int BitcoinExchange::checkData(std::string& line) {
     return (0);
 }
 
-float BitcoinExchange::getCorrectDate(std::string& line) {
+int BitcoinExchange::isInt(std::string str) {
+    size_t i = 0;
+    while(str.size() && *str.rbegin() == ' ') {
+        str.erase(str.size() - 1);
+    }
+    while(str.size() && str[0] == ' ') {
+        str.erase(0, 1);
+    }
+    for (i = 0; i < str.size(); i++) {
+        if (i == 0 && str[i] == '+')
+            continue;
+        if (!std::isdigit(str[i]))
+            return (0);
+    }
+    long long tmp = std::atol(str.c_str());
+    if (i > 11 || tmp > INT_MAX || str.empty() || str == "+")
+        return (0);
+    return (1);
+}
+
+float BitcoinExchange::getCorrectDate(std::string line) {
     tm tm = {};
-    if (line.size() != 10 || !strptime(line.c_str(), "%Y-%m-%d", &tm))
-        throw std::runtime_error("invalid date.");
+	size_t pos = line.find('-');
+	std::string oldLine = line;
+	if (pos == std::string::npos)
+        throw std::runtime_error("bad input => " + oldLine);
+	std::string year = line.substr(0, pos);
+	line.erase(0, pos + 1);
+    if (!isInt(year) || !strptime(line.c_str(), "%m-%d", &tm))
+        throw std::runtime_error("bad input => " + oldLine);
+	int y = std::atoi(year.c_str());
+	if (y < 1900)
+		tm.tm_year = 0;
+	else
+		tm.tm_year = y - 1900;
     time_t date = mktime(&tm);
     if (date == -1)
-        throw std::runtime_error("invalid date.");
+        throw std::runtime_error("bad input => " + oldLine);
     if (db.find(date) == db.end()) {
         if (db.upper_bound(date) == db.begin())
             return (db.begin()->second);
