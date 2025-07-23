@@ -6,7 +6,7 @@
 /*   By: oait-laa <oait-laa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 15:24:21 by oait-laa          #+#    #+#             */
-/*   Updated: 2025/07/22 15:13:04 by oait-laa         ###   ########.fr       */
+/*   Updated: 2025/07/23 10:50:11 by oait-laa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,36 @@ int BitcoinExchange::checkData(std::string& line) {
 
 int BitcoinExchange::isInt(std::string str) {
     size_t i = 0;
-    while(str.size() && *str.rbegin() == ' ') {
-        str.erase(str.size() - 1);
-    }
-    while(str.size() && str[0] == ' ') {
-        str.erase(0, 1);
-    }
     for (i = 0; i < str.size(); i++) {
-        if (i == 0 && str[i] == '+')
-            continue;
         if (!std::isdigit(str[i]))
             return (0);
     }
     long long tmp = std::atol(str.c_str());
     if (i > 11 || tmp > INT_MAX || str.empty() || str == "+")
         return (0);
+    return (1);
+}
+
+int BitcoinExchange::isDouble(std::string& str) {
+	while(str.size() && *str.rbegin() == ' ') {
+        str.erase(str.size() - 1);
+    }
+    while(str.size() && str[0] == ' ') {
+        str.erase(0, 1);
+    }
+    if (str[0] == '.' || str[str.size() - 1] == '.')
+        return (0);
+    int pointRep = 0;
+    for (size_t i = 0; i < str.size(); i++) {
+        if (i == 0 && str[i] == '-')
+            continue;
+        if (str[i] == '.' && pointRep == 0) {
+            pointRep++;
+            continue;
+        }
+        if (!std::isdigit(str[i]))
+            return (0);
+    }
     return (1);
 }
 
@@ -97,6 +112,8 @@ void BitcoinExchange::evaluate(std::string file) {
         while(std::getline(data, line)) {
             try
             {
+				if (line.empty())
+					continue;
                 size_t pos = line.find(" | ");
                 if (pos == std::string::npos)
                     throw std::runtime_error("bad input => " + line);
@@ -104,6 +121,8 @@ void BitcoinExchange::evaluate(std::string file) {
                 std::string value;
                 date = line.substr(0, pos);
                 value = line.substr(pos + 3);
+				if (value.empty() || !isDouble(value))
+                    throw std::runtime_error("bad input => " + line);
                 float val = strtof(value.c_str(), NULL);
                 if (val < 0)
                     throw std::runtime_error("not a positive number.");

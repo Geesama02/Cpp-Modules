@@ -53,7 +53,6 @@ void RPN::calculate(std::string rpn) {
     if (s.size() > 1)
         throw std::runtime_error("Error");
     res = s.top();
-    std::cout << "size -> " << s.size() << std::endl;
     std::cout << res << std::endl;
 }
 RPN::~RPN() {}
