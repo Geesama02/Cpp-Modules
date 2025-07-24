@@ -9,7 +9,7 @@ all: ${NAME}
 ${NAME} : ${OBJ}
 	${CPP} ${FLAGS} -o ${NAME} ${SRC}
 
-%.o: %.cpp RPN.hpp`	
+%.o: %.cpp RPN.hpp
 	${CPP} ${FLAGS} -c $< -o $@
 
 clean:

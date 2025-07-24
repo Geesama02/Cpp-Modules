@@ -54,9 +54,6 @@ int BitcoinExchange::isDouble(std::string& str) {
 	while(str.size() && *str.rbegin() == ' ') {
         str.erase(str.size() - 1);
     }
-    while(str.size() && str[0] == ' ') {
-        str.erase(0, 1);
-    }
     if (str[0] == '.' || str[str.size() - 1] == '.')
         return (0);
     int pointRep = 0;

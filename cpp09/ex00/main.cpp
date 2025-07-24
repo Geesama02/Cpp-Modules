@@ -17,11 +17,7 @@ int main(int argc, char **argv)
     try
     {
         if (argc != 2) {
-            
-            if (argc < 2)
-                std::cerr << "Error: Invalid number of arguments!." << std::endl;
-            else
-                std::cerr << "Error: could not open file." << std::endl;
+            std::cerr << "Error: Invalid number of arguments!." << std::endl;
             return (1);
         }
         BitcoinExchange btc;
@@ -32,5 +28,4 @@ int main(int argc, char **argv)
     {
         std::cerr << e.what() << '\n';
     }
-    
 }
